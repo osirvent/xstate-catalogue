@@ -34,8 +34,8 @@ export const Layout: React.FC = ({ children }) => {
         <Link href="/">
           <a>
             <p className="font-bold tracking-tight text-gray-700">
-              XState{' '}
-              <span className="font-light tracking-tighter">Catalogue</span>
+              State{' '}
+              <span className="font-light tracking-tighter">Machines</span>
             </p>
           </a>
         </Link>

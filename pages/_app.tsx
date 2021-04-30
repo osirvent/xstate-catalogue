@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>XState Catalogue</title>
+        <title>State Machines</title>
         <meta
           name="description"
           content="A collection of professionally designed state machines you can drop into your XState projects"
