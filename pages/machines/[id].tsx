@@ -97,7 +97,7 @@ const MachinePage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
   return (
     <>
       <Head>
-        <title>{props.meta.title} | State Machines</title>
+        <title>{props.meta.title} | XState Catalogue</title>
       </Head>
       <Layout
         content={
@@ -146,10 +146,16 @@ const Layout = (props: {
       <div className="h-full overflow-y-scroll">
         <div>
           <div
-            style={{ height: '550px' }}
-            className="hidden mb-16 bg-black md:block"
+            style={{ height: '500px' }}
+            className="hidden bg-black md:block"
           >
             {props.iframe}
+          </div>
+          <div
+            style={{ height: '100px' }}
+            className="bg-gray-300"
+          >
+            HOLA
           </div>
           <div>{props.content}</div>
         </div>
@@ -174,18 +180,6 @@ const ShowMachinePage = (props: {
   const [hasDismissed, setHasDismissed] = useState<boolean>(
     Boolean(localStorage.getItem('REJECTED_1')),
   );
-
-  const copyToClipboard = useCopyToClipboard({});
-
-  const fileTextRef = useRef(null);
-
-  useEffect(() => {
-    // @ts-ignore
-    const hljs: any = window.hljs;
-    if (hljs) {
-      hljs.highlightBlock(fileTextRef.current);
-    }
-  }, [fileTextRef, props.fileText]);
 
   return (
     <MachineHelpersContext.Provider
@@ -222,9 +216,6 @@ const ShowMachinePage = (props: {
           <div className="flex">
             <SideBar machine={props.machine} />
             <div className="p-6 space-y-6">
-              <div className="space-x-4 text-xs font-medium tracking-tight text-gray-500">
-                
-              </div>
               <div className="prose lg:prose-lg">
                 <MDXProvider
                   components={{
@@ -240,25 +231,6 @@ const ShowMachinePage = (props: {
                 </MDXProvider>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div className="mt-16">
-        <div className="p-6 -mb-20 text-gray-100 bg-gray-900 xl:p-12">
-          <div className="container relative max-w-6xl mx-auto">
-            <pre>
-              <code ref={fileTextRef} className="lang-ts">
-                {props.fileText}
-              </code>
-            </pre>
-            <button
-              className="absolute top-0 right-0 invisible px-6 py-3 mr-8 font-bold tracking-tight text-gray-100 bg-blue-700 rounded-lg md:visible"
-              onClick={() => {
-                copyToClipboard(props.fileText);
-              }}
-            >
-              Copy To Clipboard
-            </button>
           </div>
         </div>
       </div>

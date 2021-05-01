@@ -56,7 +56,7 @@ export const Layout: React.FC = ({ children }) => {
         <div className="items-center hidden space-x-6 md:flex">
           {router.pathname.includes('machines') && (
             <button
-              onClick={() => globalStateService.send('TOGGLE_LAYOUT')}
+              // onClick={() => globalStateService.send('TOGGLE_LAYOUT')}
               className="px-2 py-1 text-gray-400"
             >
               {layout === 'horizontal' && (
