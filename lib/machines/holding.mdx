@@ -9,17 +9,3 @@ This state machine handles holding logic.
 ### Initial status
 
 We start off in <State>noHolding</State> state and <Context stringify>assumed</Context> and <Context stringify>previous_holding</Context>
-
-- If <Event>REPORT_IS_LOGGED_OUT</Event> gets triggered, we end up in <State>loggedOut</State>
-- If <Event>REPORT_IS_LOGGED_IN</Event> gets triggered, we end up in <State>loggedIn</State>
-  - We also save some user details into context via <Action>assignUserDetailsToContext</Action>
-
-### Logged Out
-
-Once the user is <State>loggedOut</State>, we can log them back in with <Event>LOG_IN</Event>.
-
-Any time the user enters <State>loggedOut</State>, we fire off <Action>navigateToAuthPage</Action> to send them to the login page.
-
-## Logged In
-
-In the initial check, if <Event>REPORT_IS_LOGGED_IN</Event> gets triggered, we end up in <State>loggedIn</State>. From there the user can also log out with <Event>LOG_OUT</Event>.
