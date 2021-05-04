@@ -1,6 +1,19 @@
-import { assign, createMachine, Sender } from "xstate";
+import { assign, Machine, Sender } from "xstate";
 
-export interface HoldingMachineContext {};
+
+export interface HoldingMachineSchema {
+  states: {
+    noHolding: {},
+    plannedToHold: {},
+    clearedToHold: {},
+    inHolding: {},
+    clearedToLeave: {}
+  }
+}
+export interface HoldingMachineContext {
+  previous_holding : boolean,
+  assumed :boolean
+};
 
 export type HoldingMachineEvent =
 | {
@@ -34,19 +47,27 @@ export type HoldingMachineEvent =
     type: 'REVERT_TO_HOLD';
   };
 
-const holdingMachine = createMachine<
+const holdingMachine = Machine<
   HoldingMachineContext,
+  HoldingMachineSchema,
   HoldingMachineEvent
 >(
   {
     id: 'holding',
     initial: 'noHolding',
+    context: {
+      previous_holding: false,
+      assumed: false
+    },
     states: {
       noHolding: {
         on: {
           PLAN_TO_HOLD: { target: 'plannedToHold'},
           CLEAR_TO_HOLD: { target: 'clearedToHold'},
-          REVERT_TO_HOLD: { target: 'inHolding'}
+          REVERT_TO_HOLD: { 
+            cond: 'hasHeld',
+            target: 'inHolding' 
+          }
         },
       },
       plannedToHold: {
@@ -78,8 +99,8 @@ const holdingMachine = createMachine<
     },
   },
   {
-    services: {
-
+    guards: {
+      hasHeld: (ctx) => ctx.previous_holding
     },
     actions: {
 

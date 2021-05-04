@@ -1,13 +1,13 @@
-import GitHub from '@material-ui/icons/GitHub';
 import { MDXProvider } from '@mdx-js/react';
 import { inspect } from '@xstate/inspect';
 import { useInterpret } from '@xstate/react';
 import { GetStaticPaths, InferGetStaticPropsType, NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
 import { StateMachine } from 'xstate';
 import { useLayout } from '../../lib/GlobalState';
+import { Widget } from '../../lib/Widgets'
 import {
   Action,
   Context,
@@ -19,7 +19,6 @@ import {
   WholeContext,
 } from '../../lib/MachineHelpers';
 import { metadata, MetadataItem } from '../../lib/metadata';
-import { useCopyToClipboard } from '../../lib/useCopyToClipboard';
 
 const useGetImports = (slug: string, deps: any[]) => {
   const [imports, setImports] = useState<{
@@ -151,12 +150,6 @@ const Layout = (props: {
           >
             {props.iframe}
           </div>
-          <div
-            style={{ height: '100px' }}
-            className="bg-gray-300"
-          >
-            HOLA
-          </div>
           <div>{props.content}</div>
         </div>
       </div>
@@ -180,7 +173,7 @@ const ShowMachinePage = (props: {
   const [hasDismissed, setHasDismissed] = useState<boolean>(
     Boolean(localStorage.getItem('REJECTED_1')),
   );
-
+  
   return (
     <MachineHelpersContext.Provider
       value={{ service, metadata: props.mdxMetadata }}
@@ -213,6 +206,12 @@ const ShowMachinePage = (props: {
               </div>
             </div>
           )}
+          <div
+            style={{ height: '100px' }}
+            className="flex justify-center p-6 mt-6 bg-gray-200 border-2 border-gray-600 rounded-3xl"
+          >
+            <Widget /> 
+          </div>
           <div className="flex">
             <SideBar machine={props.machine} />
             <div className="p-6 space-y-6">

@@ -112,14 +112,6 @@ export const Layout: React.FC = ({ children }) => {
               )}
             </button>
           )}
-          <a
-            className="text-sm font-semibold text-gray-400"
-            href="https://github.com/mattpocock/xstate-catalogue"
-            target="_blank"
-            title="XState Catalogue GitHub"
-          >
-            v{packageJson.version}
-          </a>
         </div>
       </nav>
       <div className={shouldPreventScroll ? 'overflow-hidden' : ''}>
