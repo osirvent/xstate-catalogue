@@ -1,6 +1,7 @@
 import { useSelector, useService } from '@xstate/react';
 import React, { useContext, useEffect, useRef } from 'react';
 import { Interpreter } from 'xstate';
+import { useIsXStateTransitionAvailable } from 'xstate-helpers';
 
 export const MachineHelpersContext = React.createContext<{
   service: Interpreter<any, any, any>;
@@ -65,7 +66,7 @@ export const Event = (props: { children: string }) => {
             className={`transition-colors py-1 ${index === 0 && 'pl-2'} ${
               index === array.length - 1 && 'pr-2'
             } ${
-              state.nextEvents.includes(props.children)
+              useIsXStateTransitionAvailable(context.service, props.children)
                 ? `bg-yellow-100 text-yellow-800`
                 : 'bg-gray-100 text-gray-600'
             }`}
