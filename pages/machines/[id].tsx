@@ -18,6 +18,7 @@ import {
   Service,
   State,
   WholeContext,
+  Symbol
 } from '../../lib/MachineHelpers';
 import { metadata, MetadataItem } from '../../lib/metadata';
 
@@ -225,6 +226,7 @@ const ShowMachinePage = (props: {
                     Service,
                     Context,
                     WholeContext,
+                    Symbol
                   }}
                 >
                   <props.mdxDoc></props.mdxDoc>

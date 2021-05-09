@@ -8,4 +8,26 @@ This state machine handles holding logic.
 
 ### Initial status
 
-We start off in <State>noHolding</State> state and <Context stringify>assumed</Context> and <Context stringify>previous_holding</Context>
+We start off in <State>noHolding</State> state and with <Context stringify>previous_holding</Context> false
+
+### Show Holding Status on Label
+
+When the we are on <State>plannedToHold</State> it appears <Symbol>( )</Symbol> right before the label
+
+On <State>clearedToHold</State> state only a <Symbol>&rarr;</Symbol> is shown. And a <Symbol>&larr;</Symbol> will be shown on a <State>clearedToLeave</State>
+
+### Holding Volume
+
+ <Event>ENTER_HOLDING_VOLUME</Event> is only available on <State>clearedToHold</State> state. <Event>ENTER_HOLDING_VOLUME</Event> event will change the State to <State>inHolding</State>
+
+### In Holding State
+
+On <State>inHolding</State> state the <Event>HDG</Event> event will have no effect. <Event>IAP</Event> or <Event>DCT</Event> will activate <State>clearedToLeave</State> state. And <Event>LEAVE_HOLDING_VOLUME</Event> event will make <State>noHolding</State> active again.
+
+### Revert to Hold
+
+Only when the flight has previously held <Context stringify>previous_holding</Context> and we are on <State>noHolding</State>, the <Event>REVERT_TO_HOLD</Event> will be available
+
+### Cancel the Hold
+
+The <Event>CANCEL_HOLD</Event> event is only available when we are on <State>plannedToHold</State>, on <State>clearedToLeave</State> or on<State>clearedToHold</State> states.

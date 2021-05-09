@@ -99,6 +99,16 @@ export const Guard = (props: { children: string }) => {
   );
 };
 
+export const Symbol = (props: { children: string }) => {
+  return (
+    <span
+      className={`bg-gray-100 text-gray-600 font-mono font-bold text-lg px-2 py-1 transition-colors`}
+    >
+      {props.children}
+    </span>
+  );
+};
+
 export const Context = (props: { children: string; stringify?: boolean }) => {
   const context = useContext(MachineHelpersContext);
   const [state] = useService(context.service);
@@ -111,7 +121,7 @@ export const Context = (props: { children: string; stringify?: boolean }) => {
   return (
     <span
       className={`bg-gray-100 text-gray-600 font-mono inline-flex flex-wrap font-bold text-sm px-2 py-1 transition-colors ${
-        state.context[props.children] ? `bg-yellow-100 text-yellow-800` : ''
+        state.context[props.children] ? `bg-blue-100 text-blue-800` : ''
       }`}
     >
       {props.children}:{' '}

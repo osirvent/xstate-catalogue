@@ -9,7 +9,7 @@ const HoldingWidget = () => {
 	return (
 		<svg 
 			xmlns="http://www.w3.org/2000/svg" 
-			className={`h-12 w-12 transition-colors ease-in-out duration-1000 
+			className={`h-12 w-12 mr-20 transition-colors ease-in-out duration-1000 
 				${ state.matches('inHolding')
 			  ? 'text-green-600 animate-spin'
 			  : 'text-gray-300'
@@ -31,26 +31,29 @@ const HoldingWidget = () => {
 const LabelWidget = () => {
 	const context = useContext(MachineHelpersContext);  
   const [state] = useService(context.service)
-	
-	let stateLabel :ReactNode
 
-	if (state.matches('plannedToHold')){
-		stateLabel = <div>(&rarr;)</div>
-	}
-	else if (state.matches('clearedToHold')){
-		stateLabel = <div> &rarr; </div>
-	}
-	else if (state.matches('inHolding')){
-		stateLabel = <div>    </div>
-	}
-	else if (state.matches('clearedToLeave')){
-		stateLabel = <div>(&larr;)</div>
-	}
+	let isPlanned = state.matches('plannedToHold')
+	let isClearedToHold = state.matches('clearedToHold')
+	let isClearedToLeave = state.matches('clearedToLeave')
+
+	let isColor = "text-gray-600"
+	let isNotColor = "text-gray-300"
 
 	return (
-		<div className="flex justify-end text-5xl text-yellow-700">
-			{stateLabel}
-			VLG5432
+		<div className="flex justify-end text-5xl text-gray-600">
+			<div className={isPlanned ? isColor : isNotColor}>(</div>
+			{isClearedToHold ? (
+				<div className = {isColor}>&rarr;</div>
+					) : isClearedToLeave ? (
+						<div className = {isColor}>&larr;</div>
+					) : (
+						<div className = {isNotColor}>&rarr;</div>
+					)
+			}
+			<div className={isPlanned ? isColor : isNotColor}>)</div>
+			<div className="ml-2"> 
+				VLG5432
+			</div>
 		</div>
 	)
 }
