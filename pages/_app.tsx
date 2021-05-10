@@ -12,32 +12,10 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>State Machines</title>
         <meta
           name="description"
-          content="A collection of professionally designed state machines you can drop into your XState projects"
+          content="A collection of state machines"
         ></meta>
-        <link rel="canonical" href="https://xstate-catalogue.com" />
         <link rel="icon" type="image/png" href="/favicon.png" />
         <meta property="og:type" content="article" />
-        <meta
-          property="og:title"
-          content="XState Catalogue - Beautiful State Machines"
-        />
-        <meta
-          property="og:image"
-          content="https://xstate-catalogue.com/og-image.png"
-        />
-        <meta
-          property="og:description"
-          content="A collection of professionally designed state machines you can drop into your XState projects"
-        />
-        <meta property="og:site_name" content="XState Catalogue" />
-        <meta name="twitter:title" content="XState Catalogue" />
-        <meta
-          name="twitter:description"
-          content="A collection of professionally designed state machines you can drop into your XState projects"
-        />
-        <meta name="twitter:image" content="/og-image.png" />
-        <meta name="twitter:creator" content="@mpocock1" />
-        <meta name="twitter:site" content="@mpocock1" />
         {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID && (
           <>
             <script

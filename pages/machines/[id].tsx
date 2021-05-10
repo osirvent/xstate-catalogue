@@ -98,7 +98,7 @@ const MachinePage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
   return (
     <>
       <Head>
-        <title>{props.meta.title} | XState Catalogue</title>
+        <title>{props.meta.title} | State Machines</title>
       </Head>
       <Layout
         content={
