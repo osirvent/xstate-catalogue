@@ -172,9 +172,6 @@ const ShowMachinePage = (props: {
   const service = useInterpret(props.machine, {
     devTools: true,
   });
-  const [hasDismissed, setHasDismissed] = useState<boolean>(
-    Boolean(localStorage.getItem('REJECTED_1')),
-  );
   
   return (
     <MachineHelpersContext.Provider
@@ -182,32 +179,6 @@ const ShowMachinePage = (props: {
     >
       <div className="flex justify-center">
         <div className="">
-          {!hasDismissed && (
-            <div className="flex justify-center mb-16">
-              <div className="relative max-w-xl p-6 space-y-4 text-gray-600 bg-gray-50">
-                <div className="flex items-center space-x-3">
-                  <span className="text-3xl">💡</span>
-                  <span className="text-xl font-semibold tracking-tighter">
-                    By the way!
-                  </span>
-                </div>
-                <p className="text-gray-500 leading-">
-                  You can interact with the state machine in the article below
-                  by pressing on the <Event>EVENT</Event> buttons. They'll show
-                  up as yellow when they can be interacted with.
-                </p>
-                <button
-                  className="absolute top-0 right-0 p-2 mb-2 mr-4 text-lg"
-                  onClick={() => {
-                    setHasDismissed(true);
-                    localStorage.setItem('REJECTED_1', 'true');
-                  }}
-                >
-                  <span className="text-gray-600">✖</span>
-                </button>
-              </div>
-            </div>
-          )}
           <div
             style={{ height: '100px' }}
             className="flex justify-center p-6 mt-6 bg-gray-200 border-2 border-gray-600 rounded-3xl"
